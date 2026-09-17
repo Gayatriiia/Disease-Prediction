@@ -306,6 +306,52 @@ col1, col2 = st.columns(2)
 with col1:
 
     st.markdown(
+        '<div class="feature-name">Patient Name</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="feature-description">'
+        'Full name of the patient'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+    patient_name = st.text_input(
+        "Patient Name",
+        value="",
+        placeholder="Enter patient name",
+        label_visibility="collapsed"
+    )
+
+
+with col2:
+
+    st.markdown(
+        '<div class="feature-name">Mobile Number</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="feature-description">'
+        'Contact number of the patient'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+    mobile_no = st.text_input(
+        "Mobile Number",
+        value="",
+        placeholder="Enter mobile number",
+        label_visibility="collapsed"
+    )
+
+# next row for age and sex
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.markdown(
         '<div class="feature-name">Age (age)</div>',
         unsafe_allow_html=True
     )
@@ -953,6 +999,8 @@ if predict:
     summary = pd.DataFrame({
 
         "Clinical Feature": [
+            "Patient Name",
+            "Mobile Number",
             "Age",
             "Sex",
             "Chest Pain Type",
@@ -969,6 +1017,8 @@ if predict:
         ],
 
         "Patient Value": [
+            patient_name if patient_name else "Not provided",
+            mobile_no if mobile_no else "Not provided",
             f"{age} years",
             sex_option,
             cp_option,
